@@ -95,7 +95,7 @@ class App {
             
             // Create day heading
             const dayHeading = document.createElement('h3');
-            dayHeading.className = `w-full text-lg ${entries[0].opacityClass} mt-4 first:mt-0`;
+            dayHeading.className = `w-full text-lg ${entries[0].opacityClass} mt-4 first:mt-0 mb-2`;
             
             // Format date in Arabic
             const date = new Date(dateKey);
@@ -221,31 +221,30 @@ class App {
         element.style.transform = `rotate(${randomDegree}deg)`;
     }
     
-    addRecord(text) {
-        if (!text) {
-            text = this.gratitudeInput.value.trim();
-        }
-        if (!text) return;
+    addRecord(text = null) {
+        const inputText = text || this.gratitudeInput.value.trim();
+        if (!inputText) return;
 
-        const today = this.getDateStringFromUTC(this.getCurrentDateUTC());
-
-        const record = this.records.find(record => this.getDateStringFromUTC(record.date) === today);
+        const today = this.getCurrentDateUTC();
+        let record = this.records.find(r => this.getDateStringFromUTC(r.date) === this.getDateStringFromUTC(today));
 
         if (!record) {
-            this.records.push({ date: this.getCurrentDateUTC(), entries: [text] });
-        } else {
-            record.entries.push(text);
+            record = { date: today, entries: [] };
+            this.records.push(record);
         }
 
+        record.entries.push(inputText);
         localStorage.setItem('records', JSON.stringify(this.records));
+        this.displayRecords();
 
-        // Clear input only if it was used
-        if (this.gratitudeInput.value.trim()) {
+        if (!text) {
             this.gratitudeInput.value = '';
         }
-        
-        // Refresh display
-        this.displayRecords();
+
+        // Refresh checklist to show updated state
+        if (this.checklistManager) {
+            this.checklistManager.refresh();
+        }
     }
     
     bindEvents() {
@@ -296,7 +295,11 @@ class App {
 
             localStorage.setItem('records', JSON.stringify(this.records));
             this.displayRecords();
-            // No longer need to uncheck the item from the checklist
+        }
+
+        // Refresh checklist to show updated state
+        if (this.checklistManager) {
+            this.checklistManager.refresh();
         }
     }
 

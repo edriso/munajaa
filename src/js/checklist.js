@@ -25,9 +25,7 @@ class ChecklistManager {
             'بر الوالدين',
             'الأمر بالمعروف والنهي عن المنكر'
         ];
-        this.customItems = this.loadCustomItems();
-        this.hiddenDefaultItems = this.loadHiddenDefaultItems();
-        this.checkedItems = this.loadCheckedItems();
+        this.allItems = this.loadAllItems();
         this.init();
     }
 
@@ -43,10 +41,8 @@ class ChecklistManager {
 
     render() {
         this.checklistList.innerHTML = '';
-        const visibleDefaultItems = this.defaultItems.filter(item => !this.hiddenDefaultItems.includes(item));
-        const allItems = [...visibleDefaultItems, ...this.customItems];
-
-        allItems.forEach(item => {
+        
+        this.allItems.forEach(item => {
             const isChecked = this.isChecked(item);
             const li = document.createElement('li');
             li.className = `flex items-center justify-between p-3 rounded-lg transition-colors duration-200 ${isChecked ? 'bg-primary-500 text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'}`;
@@ -87,77 +83,58 @@ class ChecklistManager {
 
     handleCheck(item) {
         if (item && !this.isChecked(item)) {
-            this.checkedItems.push(item);
-            this.saveCheckedItems();
             this.app.addRecord(item);
             this.render();
         }
     }
 
     isChecked(item) {
-        return this.checkedItems.includes(item);
-    }
-
-    loadCheckedItems() {
+        // Check if item is in today's entries
         const today = new Date().toISOString().split('T')[0];
-        return JSON.parse(localStorage.getItem(`checklist_${today}`)) || [];
-    }
-
-    saveCheckedItems() {
-        const today = new Date().toISOString().split('T')[0];
-        localStorage.setItem(`checklist_${today}`, JSON.stringify(this.checkedItems));
-    }
-
-    uncheckItem(itemText) {
-        const index = this.checkedItems.indexOf(itemText);
-        if (index > -1) {
-            this.checkedItems.splice(index, 1);
-            this.saveCheckedItems();
-            this.render();
-        }
+        const todayRecord = this.app.records.find(r => {
+            const recordDate = new Date(r.date).toISOString().split('T')[0];
+            return recordDate === today;
+        });
+        
+        return todayRecord && todayRecord.entries.includes(item);
     }
 
     addItem() {
         const newItem = this.newItemInput.value.trim();
-        const allItems = [...this.defaultItems, ...this.customItems];
-        if (newItem && !allItems.includes(newItem)) {
-            this.customItems.push(newItem);
-            this.saveCustomItems();
+        if (newItem && !this.allItems.includes(newItem)) {
+            this.allItems.push(newItem);
+            this.saveAllItems();
             this.newItemInput.value = '';
             this.render();
+        } else if (newItem && this.allItems.includes(newItem)) {
+            // If item already exists, just check it
+            if (!this.isChecked(newItem)) {
+                this.handleCheck(newItem);
+            }
+            this.newItemInput.value = '';
         }
     }
 
     deleteItem(item) {
-        if (this.isCustomItem(item)) {
-            this.customItems = this.customItems.filter(i => i !== item);
-            this.saveCustomItems();
-        } else if (this.defaultItems.includes(item)) {
-            if (!this.hiddenDefaultItems.includes(item)) {
-                this.hiddenDefaultItems.push(item);
-                this.saveHiddenDefaultItems();
-            }
-        }
+        this.allItems = this.allItems.filter(i => i !== item);
+        this.saveAllItems();
         this.render();
     }
 
-    isCustomItem(item) {
-        return this.customItems.includes(item);
+    loadAllItems() {
+        const savedItems = JSON.parse(localStorage.getItem('customChecklistItems')) || [];
+        // If no saved items, initialize with default items
+        if (savedItems.length === 0) {
+            return [...this.defaultItems];
+        }
+        return savedItems;
     }
 
-    loadCustomItems() {
-        return JSON.parse(localStorage.getItem('customChecklistItems')) || [];
+    saveAllItems() {
+        localStorage.setItem('customChecklistItems', JSON.stringify(this.allItems));
     }
 
-    saveCustomItems() {
-        localStorage.setItem('customChecklistItems', JSON.stringify(this.customItems));
-    }
-
-    loadHiddenDefaultItems() {
-        return JSON.parse(localStorage.getItem('hiddenDefaultItems')) || [];
-    }
-
-    saveHiddenDefaultItems() {
-        localStorage.setItem('hiddenDefaultItems', JSON.stringify(this.hiddenDefaultItems));
+    refresh() {
+        this.render();
     }
 } 

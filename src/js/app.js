@@ -53,9 +53,14 @@ class App {
                 default: opacityClass = 'opacity-0';
             }
             
-            // Add each entry to the collection
+            // Add each entry to the collection with date info
             record.entries.forEach((entry) => {
-                allEntries.push({ text: entry, opacityClass });
+                allEntries.push({ 
+                    text: entry, 
+                    opacityClass, 
+                    date: record.date,
+                    daysDiff 
+                });
             });
         });
 
@@ -67,20 +72,67 @@ class App {
 
         this.gratitudeList.innerHTML = '';
         
-        // Shuffle the entries randomly
-        const shuffledEntries = this.shuffleArray(allEntries);
-        
-        // Display shuffled entries with random rotation
-        shuffledEntries.forEach((entry) => {
-            const entryLi = document.createElement('li');
-            entryLi.className = `${entry.opacityClass} inline-block p-4`;
-            entryLi.textContent = entry.text;
-            entryLi.dataset.date = this.getDateStringFromUTC(this.records.find(record => record.entries.includes(entry.text)).date);
+        // Group entries by date
+        const groupedByDate = {};
+        allEntries.forEach(entry => {
+            const dateKey = this.getDateStringFromUTC(entry.date);
+            if (!groupedByDate[dateKey]) {
+                groupedByDate[dateKey] = [];
+            }
+            groupedByDate[dateKey].push(entry);
+        });
 
-            // Apply random rotation
-            this.applyRandomRotation(entryLi);
+        // Display entries grouped by date
+        Object.keys(groupedByDate).forEach(dateKey => {
+            const entries = groupedByDate[dateKey];
             
-            this.gratitudeList.appendChild(entryLi);
+            // Create day heading
+            const dayHeading = document.createElement('h3');
+            dayHeading.className = 'w-full text-lg font-bold text-primary-400';
+            
+            // Format date in Arabic
+            const date = new Date(dateKey);
+            const today = new Date();
+            const yesterday = new Date(today);
+            yesterday.setDate(yesterday.getDate() - 1);
+
+            const dateString = date.toDateString();
+            
+            let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            let weekDay = `يوم`;
+            
+            if (dateString === today.toDateString()) {
+                options = { year: 'numeric', month: 'long', day: 'numeric' };
+                weekDay = 'اليوم،';
+            } else if (dateString === yesterday.toDateString()) {
+                options = { year: 'numeric', month: 'long', day: 'numeric' };
+                weekDay = 'يوم الأمس،';
+            }
+            
+            dayHeading.textContent = `${weekDay} ${date.toLocaleDateString('ar-SA', options)}:`;
+            this.gratitudeList.appendChild(dayHeading);
+            
+            // Create container for this day's entries
+            const dayContainer = document.createElement('div');
+            dayContainer.className = 'w-full flex gap-4 flex-wrap justify-center mb-4';
+            
+            // Shuffle the entries for this day
+            const shuffledEntries = this.shuffleArray(entries);
+            
+            // Display shuffled entries with random rotation
+            shuffledEntries.forEach((entry) => {
+                const entryLi = document.createElement('li');
+                entryLi.className = `${entry.opacityClass} inline-block p-4`;
+                entryLi.textContent = entry.text;
+                entryLi.dataset.date = this.getDateStringFromUTC(entry.date);
+
+                // Apply random rotation
+                this.applyRandomRotation(entryLi);
+                
+                dayContainer.appendChild(entryLi);
+            });
+            
+            this.gratitudeList.appendChild(dayContainer);
         });
     }
     

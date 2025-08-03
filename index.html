@@ -13,7 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="src/css/output.css"/>
-    <script src="src/js/themeConfig.js"></script>
 </head>
 <body class="font-text-body bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col leading-relaxed bg-blend-darken dark:bg-blend-soft-light bg-repeat bg-center" style="background-image: url('src/assets/vecteezy_golden-islamic-pattern.png'); background-size: 50%;">
     <header class="bg-white/[0.5] dark:bg-gray-800/[0.5] shadow-sm border-b border-gray-200 dark:border-gray-700 backdrop-blur-sm sticky top-0 z-10">
@@ -30,18 +29,6 @@
                     مناجاة
                 </h1>
             </div>
-
-            <!-- Theme Toggle -->
-            <button id="themeToggle" class="flex items-center justify-center w-10 h-10 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors duration-200 cursor-pointer" aria-label="Toggle dark mode" type="button">
-                <!-- Sun icon for dark mode -->
-                <svg id="sunIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                </svg>
-                <!-- Moon icon for light mode -->
-                <svg id="moonIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                </svg>
-            </button>
         </div>
     </header>
 
@@ -51,7 +38,7 @@
         <section id="home" class="tab-content">
             <div class="mb-8 text-center">
                 <h2 class="text-2xl sm:text-3xl lg:text-4xl text-gray-900 dark:text-white mb-4">
-                    ﴿يَا أَيُّهَا الَّذِينَ آمَنُوا اذْكُرُوا اللَّهَ ذِكْراً كَثِيراً &#x06DD; وَسَبِّحُوهُ بُكْرَةً وَأَصِيلاً﴾
+                    ﴿يَا أَيُّهَا الَّذِينَ آمَنُوا اذْكُرُوا اللَّهَ ذِكْراً كَثِيراً &#x06DD; وَسَبِّحُوهُ بُكْرَةً وَأَصِيلاً﴾
                 </h2>
                 <h3 class="text-lg sm:text-xl text-primary-400 mb-4">
                     زِد من حسناتك
@@ -99,16 +86,70 @@
             </div>
         </section>
 
-        <!-- Reminders Tab Content -->
-        <section id="reminders" class="tab-content hidden">
-            <h2 class="text-2xl text-center mb-6 text-gray-900 dark:text-white">التذكير والمتابعة</h2>
+        <!-- Stopwatch Tab Content -->
+        <section id="stopwatch" class="tab-content hidden">
+            <h2 class="text-2xl text-center mb-6 text-gray-900 dark:text-white">المتابعة</h2>
             <p class="text-center text-gray-600 dark:text-gray-400">سيتم إضافة هذه الميزة قريباً بإذن الله.</p>
-       </section>
+        </section>
 
         <!-- Settings Tab Content -->
         <section id="settings" class="tab-content hidden">
-             <h2 class="text-2xl text-center mb-6 text-gray-900 dark:text-white">الإعدادات</h2>
-             <p class="text-center text-gray-600 dark:text-gray-400">سيتم إضافة هذه الميزة قريباً بإذن الله.</p>
+            <div class="bg-white/[0.5] dark:bg-gray-800/[0.5] rounded-xl p-6 shadow-sm">
+                <h2 class="text-2xl text-center mb-6 text-gray-900 dark:text-white">الإعدادات</h2>
+                
+                <div class="space-y-6">
+                    <!-- Theme Settings -->
+                    <div class="bg-gray-100 dark:bg-gray-700/[0.5] rounded-lg p-4">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">المظهر</h3>
+                        <button id="theme-toggle" class="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors duration-200">
+                            <span id="theme-icon"></span>
+                            <span id="theme-text">الوضع الداكن</span>
+                        </button>
+                    </div>
+
+                    <!-- Reminder Settings -->
+                    <div class="bg-gray-100 dark:bg-gray-700/[0.5] rounded-lg p-4">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">إعدادات التذكيرات</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700 dark:text-gray-300">مدة التذكير:</span>
+                                <div class="flex items-center gap-2">
+                                    <input type="number" id="reminder-interval" min="1" max="60" class="w-16 px-2 py-1 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-center">
+                                    <span class="text-gray-700 dark:text-gray-300">دقيقة</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700 dark:text-gray-300">حالة التذكيرات:</span>
+                                <button id="reminder-toggle" class="px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors duration-200">
+                                    تشغيل التذكيرات
+                                </button>
+                            </div>
+                            
+                            <div class="text-center">
+                                <p id="reminder-status" class="text-sm text-gray-500 dark:text-gray-400">التذكيرات متوقفة</p>
+                            </div>
+
+                            <!-- Audio Preview -->
+                            <div class="text-center pt-2">
+                                <button id="play-audio" class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors duration-200">
+                                    معاينة الصوت
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- App Info -->
+                    <div class="bg-gray-100 dark:bg-gray-700/[0.5] rounded-lg p-4">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">معلومات التطبيق</h3>
+                        <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                            <p>الإصدار: 1.0.0</p>
+                            <p>مناجاة - تطبيق إسلامي للذكر والعبادة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -123,9 +164,9 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
                 <span class="text-xs">القائمة</span>
             </button>
-            <button data-tab="reminders" class="tab-btn flex-1 flex flex-col items-center p-2 text-gray-600 dark:text-gray-400">
+            <button data-tab="stopwatch" class="tab-btn flex-1 flex flex-col items-center p-2 text-gray-600 dark:text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                <span class="text-xs">تذكير</span>
+                <span class="text-xs">مؤقت</span>
             </button>
             <button data-tab="settings" class="tab-btn flex-1 flex flex-col items-center p-2 text-gray-600 dark:text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -137,5 +178,7 @@
     <script src="src/js/tabs.js"></script>
     <script src="src/js/app.js"></script>
     <script src="src/js/checklist.js"></script>
+    <script src="src/js/reminders.js"></script>
+    <script src="src/js/settings.js"></script>
 </body>
 </html>

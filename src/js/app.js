@@ -4,38 +4,38 @@ class App {
         this.addGratitudeBtn = document.getElementById('addGratitudeBtn');
         this.gratitudeList = document.getElementById('gratitudeList');
         
-        this.gratitudeRecords = [];
-        this.maxGratitudeDays = 7;
+        this.records = [];
+        this.maxDays = 7;
         this.userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-        // Load gratitudeRecords from localStorage
-        const gratitudeRecords = localStorage.getItem('gratitudeRecords');
+        // Load records from localStorage
+        const records = localStorage.getItem('records');
 
-        if(gratitudeRecords && gratitudeRecords.length > 0) {
-            this.gratitudeRecords = JSON.parse(gratitudeRecords);
+        if(records && records.length > 0) {
+            this.records = JSON.parse(records);
         }
 
         this.init();
     }
     
     init() {
-        this.displayGratitude();
+        this.displayRecords();
         this.bindEvents();
     }
     
-    displayGratitude() {
+    displayRecords() {
         // Collect all valid entries with their opacity classes
         const allEntries = [];
         
-        this.gratitudeRecords.forEach((record) => {
+        this.records.forEach((record) => {
             // Calculate days difference from today
             const daysDiff = this.getDaysDifference(record.date);
             
             
             // Skip and delete old records
-            if (daysDiff > this.maxGratitudeDays) {
-                this.gratitudeRecords = this.gratitudeRecords.filter(item => item.date !== record.date);
-                localStorage.setItem('gratitudeRecords', JSON.stringify(this.gratitudeRecords));
+            if (daysDiff > this.maxDays) {
+                this.records = this.records.filter(item => item.date !== record.date);
+                localStorage.setItem('records', JSON.stringify(this.records));
                 return;
             }
             
@@ -75,7 +75,7 @@ class App {
             const entryLi = document.createElement('li');
             entryLi.className = `${entry.opacityClass} inline-block p-4`;
             entryLi.textContent = entry.text;
-            entryLi.dataset.date = this.getDateStringFromUTC(this.gratitudeRecords.find(record => record.entries.includes(entry.text)).date);
+            entryLi.dataset.date = this.getDateStringFromUTC(this.records.find(record => record.entries.includes(entry.text)).date);
 
             // Apply random rotation
             this.applyRandomRotation(entryLi);
@@ -162,39 +162,39 @@ class App {
         element.style.transform = `rotate(${randomDegree}deg)`;
     }
     
-    addGratitude() {
+    addRecord() {
         const text = this.gratitudeInput.value.trim();
         if (!text) return;
 
         const today = this.getDateStringFromUTC(this.getCurrentDateUTC());
 
-        const record = this.gratitudeRecords.find(record => this.getDateStringFromUTC(record.date) === today);
+        const record = this.records.find(record => this.getDateStringFromUTC(record.date) === today);
 
         if (!record) {
-            this.gratitudeRecords.push({ date: this.getCurrentDateUTC(), entries: [text] });
+            this.records.push({ date: this.getCurrentDateUTC(), entries: [text] });
         } else {
-            this.gratitudeRecords.find(record => {
+            this.records.find(record => {
                 if (this.getDateStringFromUTC(record.date) === today) {
                     record.entries.push(text);
                 }
             });
         }
 
-        localStorage.setItem('gratitudeRecords', JSON.stringify(this.gratitudeRecords));
+        localStorage.setItem('records', JSON.stringify(this.records));
 
         // Clear input
         this.gratitudeInput.value = '';
         
         // Refresh display
-        this.displayGratitude();
+        this.displayRecords();
     }
     
     bindEvents() {
-        this.addGratitudeBtn.addEventListener('click', () => this.addGratitude());
+        this.addGratitudeBtn.addEventListener('click', () => this.addRecord());
         
         this.gratitudeInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                this.addGratitude();
+                this.addRecord();
             }
         });
 
@@ -203,18 +203,23 @@ class App {
 
             if(target.tagName !== 'LI') return;
 
-            const record = this.gratitudeRecords.find(record => this.getDateStringFromUTC(record.date) === target.dataset.date);
+            const record = this.records.find(record => this.getDateStringFromUTC(record.date) === target.dataset.date);
             
             if (!record) return;
             
-            record.entries = record.entries.filter(entry => entry !== target.textContent);
-
-            if (record.entries.length === 0) {
-                this.gratitudeRecords = this.gratitudeRecords.filter(item => item.date !== record.date);
+            // Find the index of the specific entry to remove
+            const entryIndex = record.entries.indexOf(target.textContent);
+            if (entryIndex > -1) {
+                // Remove only the specific entry at this index
+                record.entries.splice(entryIndex, 1);
             }
 
-            localStorage.setItem('gratitudeRecords', JSON.stringify(this.gratitudeRecords));
-            this.displayGratitude();
+            if (record.entries.length === 0) {
+                this.records = this.records.filter(item => item.date !== record.date);
+            }
+
+            localStorage.setItem('records', JSON.stringify(this.records));
+            this.displayRecords();
         });
     }
 }

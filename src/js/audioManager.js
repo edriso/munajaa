@@ -14,8 +14,6 @@ class AudioManager {
     }
 
     preloadAllAudio() {
-        console.log('Preloading audio files...');
-        
         Object.entries(this.audioFiles).forEach(([key, path]) => {
             this.preloadAudio(key, path);
         });
@@ -27,7 +25,6 @@ class AudioManager {
             audio.preload = 'auto';
             
             audio.addEventListener('canplaythrough', () => {
-                console.log(`Audio preloaded successfully: ${key}`);
                 this.cachedAudio[key] = audio;
             });
             
@@ -55,9 +52,7 @@ class AudioManager {
             // Reset audio to beginning if it was already played
             audio.currentTime = 0;
             
-            return audio.play().then(() => {
-                console.log(`Audio playing successfully: ${key}`);
-            }).catch(error => {
+            return audio.play().then(() => {}).catch(error => {
                 console.log(`Audio playback failed for ${key}:`, error);
                 throw error;
             });

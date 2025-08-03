@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="src/css/output.css"/>
 </head>
-<body class="font-text-body bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col leading-relaxed bg-blend-darken dark:bg-blend-soft-light bg-repeat bg-center bg-cover">
+<body class="font-text-body bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col leading-relaxed bg-blend-darken dark:bg-blend-soft-light bg-repeat bg-center" style="background-image: url('src/assets/vecteezy_golden-islamic-pattern.png'); background-size: 50%;">
     <header class="bg-white/[0.5] dark:bg-gray-800/[0.5] shadow-sm border-b border-gray-200 dark:border-gray-700 backdrop-blur-sm sticky top-0 z-10">
         <div class="flex justify-between items-center h-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Logo/Title -->
@@ -36,52 +36,56 @@
     <main class="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         <!-- Home Tab Content -->
         <section id="home" class="tab-content">
-            <div class="mb-8 text-center">
-                <h2 class="text-2xl sm:text-3xl text-gray-900 dark:text-white mb-4">
-                    ﴿يَا أَيُّهَا الَّذِينَ آمَنُوا اذْكُرُوا اللَّهَ ذِكْراً كَثِيراً &#x06DD; وَسَبِّحُوهُ بُكْرَةً وَأَصِيلاً﴾
-                </h2>
-                <h3 class="text-lg sm:text-xl text-primary-400 mb-4">
-                    زِد من حسناتك
-                </h3>
-            </div>
-            <div>
-                <div class="flex gap-3 mb-2">
-                    <input 
-                        type="text" 
-                        id="gratitudeInput"
-                        class="font-text-handwriting flex-1 px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out"
-                        placeholder="ماذا فعلت اليوم لله؟"
-                        aria-label="حقل إدخال الذِكر"
-                        aria-describedby="gratitude-description"
-                    />
-                    <button 
-                        id="addGratitudeBtn"
-                        class="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-xl shadow-sm hover:shadow-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-primary-500/20 cursor-pointer"
-                        aria-label="إضافة ذِكر"
-                        type="button"
-                    >
-                        أضف
-                    </button>
+            <div class="bg-white/[0.5] dark:bg-gray-800/[0.5] rounded-xl p-6 shadow-sm">
+                <div class="mb-8 text-center">
+                    <h2 class="text-2xl sm:text-3xl text-gray-900 dark:text-white mb-4">
+                        ﴿يَا أَيُّهَا الَّذِينَ آمَنُوا اذْكُرُوا اللَّهَ ذِكْراً كَثِيراً &#x06DD; وَسَبِّحُوهُ بُكْرَةً وَأَصِيلاً﴾
+                    </h2>
+                    <h3 class="text-lg sm:text-xl text-primary-400 mb-4">
+                        زِد من حسناتك
+                    </h3>
                 </div>
-                <p class="text-xs sm:text-sm lg:text-base text-gray-600 dark:text-gray-400 px-4 sm:px-6 mb-8">
-                    اكتب ما قمت به من أذكار أو عبادات اليوم (سيتم حفظها لمدة 7 أيام، يمكنك حذفها مباشرة بالنقر مرتين)
-                </p>
-                <ul id="gratitudeList" class="text-gray-700 dark:text-gray-300 flex flex-wrap justify-center bg-white/[0.5] dark:bg-gray-800/[0.5] rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 sm:p-6" role="list" aria-label="قائمة الأدعية">
-                    <!-- Content will be dynamically added here -->
-                </ul>
+                <div>
+                    <div class="flex gap-3 mb-2">
+                        <input 
+                            type="text" 
+                            id="gratitudeInput"
+                            class="font-text-handwriting flex-1 px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out"
+                            placeholder="ماذا فعلت اليوم لله؟"
+                            aria-label="حقل إدخال الذِكر"
+                            aria-describedby="gratitude-description"
+                        />
+                        <button 
+                            id="addGratitudeBtn"
+                            class="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-xl shadow-sm hover:shadow-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-primary-500/20 cursor-pointer"
+                            aria-label="إضافة ذِكر"
+                            type="button"
+                        >
+                            أضف
+                        </button>
+                    </div>
+                    <p class="text-xs sm:text-sm lg:text-base text-gray-600 dark:text-gray-400 px-4 sm:px-6 mb-8">
+                        اكتب ما قمت به من أذكار أو عبادات اليوم (سيتم حفظها لمدة 7 أيام، يمكنك حذفها مباشرة بالنقر مرتين)
+                    </p>
+                    <ul id="gratitudeList" class="text-gray-700 dark:text-gray-300 flex flex-wrap justify-center bg-gray-100 dark:bg-gray-700/[0.75] rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-4 sm:p-6" role="list" aria-label="قائمة الأدعية">
+                        <!-- Content will be dynamically added here -->
+                    </ul>
+                </div>
             </div>
         </section>
 
         <!-- Checklist Tab Content -->
         <section id="checklist" class="tab-content hidden">
-            <h2 class="text-2xl text-center mb-6 text-gray-900 dark:text-white">قائمة العبادات اليومية</h2>
-            <ul id="checklist-list" class="space-y-4">
-                <!-- Checklist items will be injected by checklist.js -->
-            </ul>
-            <div class="mt-6">
-                <div class="flex gap-3">
-                    <input type="text" id="new-checklist-item-input" class="flex-1 px-4 py-2 border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500" placeholder="إضافة عبادة جديدة...">
-                    <button id="add-checklist-item-btn" class="px-6 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-xl">أضف</button>
+            <div class="bg-white/[0.5] dark:bg-gray-800/[0.5] rounded-xl p-6 shadow-sm">
+                <h2 class="text-2xl text-center mb-6 text-gray-900 dark:text-white">قائمة العبادات اليومية</h2>
+                <ul id="checklist-list" class="space-y-4">
+                    <!-- Checklist items will be injected by checklist.js -->
+                </ul>
+                <div class="mt-6">
+                    <div class="flex gap-3">
+                        <input type="text" id="new-checklist-item-input" class="flex-1 px-4 py-2 border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500" placeholder="إضافة عبادة جديدة...">
+                        <button id="add-checklist-item-btn" class="px-6 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-xl">أضف</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -94,7 +98,7 @@
                 <div class="space-y-6">
                     <!-- Timer Display -->
                     <div class="text-center">
-                        <div class="bg-gray-100 dark:bg-gray-700 rounded-2xl p-8 mb-6">
+                        <div class="bg-gray-100 dark:bg-gray-700/[0.75] rounded-2xl p-8 mb-6">
                             <div class="text-6xl font-mono font-bold text-gray-900 dark:text-white mb-2" id="stopwatch-time">
                                 05:00
                             </div>
@@ -116,7 +120,7 @@
                     </div>
 
                     <!-- Duration Settings -->
-                    <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4">
+                    <div class="bg-gray-100 dark:bg-gray-700/[0.75] rounded-lg p-4">
                         <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">إعدادات المدة</h3>
                         <div class="flex items-center justify-between">
                             <span class="text-gray-700 dark:text-gray-300">مدة المؤقت:</span>
@@ -137,7 +141,7 @@
                 
                 <div class="space-y-6">
                     <!-- Theme Settings -->
-                    <div class="bg-gray-100 dark:bg-gray-700/[0.5] rounded-lg p-4">
+                    <div class="bg-gray-100 dark:bg-gray-700/[0.75] rounded-lg p-4">
                         <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">المظهر</h3>
                         <button id="theme-toggle" class="flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-colors duration-200">
                             <span id="theme-icon"></span>
@@ -146,7 +150,7 @@
                     </div>
 
                     <!-- Reminder Settings -->
-                    <div class="bg-gray-100 dark:bg-gray-700/[0.5] rounded-lg p-4">
+                    <div class="bg-gray-100 dark:bg-gray-700/[0.75] rounded-lg p-4">
                         <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">إعدادات التذكيرات</h3>
                         
                         <div class="space-y-4">
@@ -171,7 +175,7 @@
 
                             <!-- Audio Preview -->
                             <div class="text-center pt-2">
-                                <button id="play-audio" class="px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors duration-200">
+                                <button id="play-audio" class="px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition-colors duration-200">
                                     معاينة الصوت
                                 </button>
                             </div>
@@ -179,7 +183,7 @@
                     </div>
 
                     <!-- App Info -->
-                    <div class="bg-gray-100 dark:bg-gray-700/[0.5] rounded-lg p-4">
+                    <div class="bg-gray-100 dark:bg-gray-700/[0.75] rounded-lg p-4">
                         <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">معلومات التطبيق</h3>
                         <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                             <p>الإصدار: 1.0.0</p>

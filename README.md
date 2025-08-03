@@ -1,32 +1,58 @@
-# مناجاة - Munajat
+# Munajat - مناجاة
 
-في عالم مليء بالانشغالات، غالباً ما ننسى أهم شيء في حياتنا: المناجاة والذكر والدعاء.
-
-آمل أن يساعد هذا التطبيق في تذكيرنا بأهمية اللحظات المباركة مع الله وزيادة حسناتنا.
+A spiritual daily tracker for Muslims to record prayers, dhikr, and good deeds.
 
 <div align="center">
-  <img src="src/assets/heart-logo.svg" alt="مناجاة" width="64" height="64">
+  <img src="src/assets/heart-logo.svg" alt="Munajat" width="64" height="64">
 </div>
 
-## التقنية
+## What is Munajat?
 
-- HTML, CSS (Tailwind), و JavaScript
-- البيانات محفوظة محلياً في متصفحك
+Munajat (مناجاة) means "whispering to God" - intimate conversations with Allah. This app helps you track your daily spiritual activities and stay connected to your faith.
 
-## المميزات
+## Features
 
-- اكتب أدعيتك وأذكارك اليومية
-- شاهد أدعيتك اليوم مميزة
-- يتم حفظ إدخالاتك تلقائياً في متصفحك
-- كل إدخال يتم مسحه بعد 7 أيام، مما يحافظ على قائمتك جديدة
-- كشف تلقائي للوقت المحلي وعرض التاريخ المحلي
-- ترتيب عرض عشوائي مع تأثيرات دوران مرحة
-- شفافية تعتمد على العمر (الإدخالات الحديثة أكثر وضوحاً)
-- انقر مزدوج لحذف الإدخالات
-- شعار قلب نابض متحرك
-- واجهة بسيطة ونظيفة باللغة العربية
-- تصميم داكن مع ألوان خضراء تعكس الطبيعة الروحية
+### 📝 Daily Entries
+- Add your daily prayers, dhikr, and good deeds
+- Entries are grouped by date with Arabic headings
+- Automatic local storage - your data stays private
+
+### ✅ Daily Checklist
+- Pre-loaded with common Islamic practices
+- Add custom items to your checklist
+- Check off completed activities
+- Items automatically sync with your daily entries
+
+### ⏱️ Focus Timer
+- 5-minute default timer (customizable 1-120 minutes)
+- Perfect for focused dhikr or prayer sessions
+- Plays beautiful Islamic audio when timer ends
+- Auto-resets after completion
+
+### 🔔 Reminders
+- Audio reminders every 10 minutes (customizable)
+- Gentle Islamic audio notifications
+- Enable/disable as needed
+
+### ⚙️ Settings
+- Dark/light theme toggle
+- Timer duration settings
+- Reminder controls
+- All settings saved automatically
+
+## Getting Started
+
+1. **Clone or download** the project
+2. **Open** `index.html` in your browser
+3. **Start tracking** your daily spiritual activities!
+
+## Technical Details
+
+- **Built with**: HTML, CSS (Tailwind), JavaScript
+- **Storage**: Local browser storage (your data stays private)
+- **Language**: Arabic interface
+- **Theme**: Islamic-inspired design with green accents
 
 ---
 
-**خذ لحظات مباركة للصلاة والذكر والاستغفار وزد من حسناتك!** 🌿
+**Take blessed moments for prayer, remembrance, and seeking forgiveness, and increase your good deeds!** 🌿

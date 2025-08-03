@@ -1,7 +1,7 @@
 {
-  "name": "grateful-heart",
+  "name": "munajat",
   "version": "1.0.0",
-  "description": "A simple web app to help you practice gratitude by writing down what you're thankful for each day.",
+  "description": "A spiritual daily tracker for Muslims to record prayers, zekr, and good deeds.",
   "main": "index.html",
   "scripts": {
     "start": "npx @tailwindcss/cli -i ./src/css/input.css -o ./src/css/output.css --watch",

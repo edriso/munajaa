@@ -1,7 +1,6 @@
 // Manages the reminders functionality for playing audio at intervals.
 class RemindersManager {
     constructor() {
-        this.audio = null;
         this.interval = null;
         this.isEnabled = false;
         this.intervalMinutes = 10;
@@ -10,25 +9,10 @@ class RemindersManager {
     }
 
     init() {
-        this.loadAudio();
         this.updateDisplay();
         // Start reminders if enabled by default
         if (this.isEnabled) {
             this.start();
-        }
-    }
-
-    loadAudio() {
-        try {
-            this.audio = new Audio('src/assets/sounds/almahdali_yosef--Salli_ala_Mohamed.mp3');
-            this.audio.preload = 'auto';
-            this.audio.addEventListener('error', () => {
-                console.log('Audio file not found. Please add the audio file to src/assets/sounds/');
-                this.audio = null;
-            });
-        } catch (error) {
-            console.log('Failed to load audio:', error);
-            this.audio = null;
         }
     }
 
@@ -61,30 +45,12 @@ class RemindersManager {
     }
 
     playAudio() {
-        if (this.audio) {
-            // Reset audio to beginning if it was already played
-            this.audio.currentTime = 0;
-            
-            this.audio.play().then(() => {
-                console.log('Audio playing successfully');
-            }).catch(error => {
-                console.log('Audio playback failed:', error);
-                // Try to reload the audio and play again
-                this.loadAudio();
-                if (this.audio) {
-                    this.audio.play().catch(retryError => {
-                        console.log('Audio retry failed:', retryError);
-                    });
-                }
+        if (window.audioManager && window.audioManager.isAudioLoaded('reminder')) {
+            window.audioManager.playAudio('reminder').catch(error => {
+                console.log('Reminder audio playback failed:', error);
             });
         } else {
-            console.log('Audio not loaded, attempting to load...');
-            this.loadAudio();
-            if (this.audio) {
-                this.audio.play().catch(error => {
-                    console.log('Audio playback failed after reload:', error);
-                });
-            }
+            console.log('Reminder audio not loaded yet');
         }
     }
 

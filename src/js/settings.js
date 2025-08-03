@@ -98,8 +98,12 @@ class SettingsManager {
         const playAudioBtn = document.getElementById('play-audio');
         if (playAudioBtn) {
             playAudioBtn.addEventListener('click', () => {
-                if (window.remindersManager) {
-                    window.remindersManager.playAudio();
+                if (window.audioManager && window.audioManager.isAudioLoaded('reminder')) {
+                    window.audioManager.playAudio('reminder').catch(error => {
+                        console.log('Audio preview failed:', error);
+                    });
+                } else {
+                    console.log('Audio not loaded yet');
                 }
             });
         }

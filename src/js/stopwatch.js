@@ -5,30 +5,14 @@ class StopwatchManager {
         this.isRunning = false;
         this.timeLeft = 0;
         this.duration = 5; // default 5 minutes
-        this.audio = null;
         this.loadSettings();
         this.init();
     }
 
     init() {
-        this.loadAudio();
         this.resetTimer();
         this.updateDisplay();
         this.addEventListeners();
-    }
-
-    loadAudio() {
-        try {
-            this.audio = new Audio('src/assets/sounds/almahdali_yosef--Subhan_Allah.mp3');
-            this.audio.preload = 'auto';
-            this.audio.addEventListener('error', () => {
-                console.log('Stopwatch audio file not found.');
-                this.audio = null;
-            });
-        } catch (error) {
-            console.log('Failed to load stopwatch audio:', error);
-            this.audio = null;
-        }
     }
 
     loadSettings() {
@@ -99,11 +83,12 @@ class StopwatchManager {
     }
 
     playCompletionSound() {
-        if (this.audio) {
-            this.audio.currentTime = 0;
-            this.audio.play().catch(error => {
+        if (window.audioManager && window.audioManager.isAudioLoaded('stopwatch')) {
+            window.audioManager.playAudio('stopwatch').catch(error => {
                 console.log('Stopwatch completion sound failed:', error);
             });
+        } else {
+            console.log('Stopwatch audio not loaded yet');
         }
     }
 

@@ -46,30 +46,30 @@
         <!-- Home Tab Content -->
         <section id="home" class="tab-content">
             <div class="bg-white/[0.5] dark:bg-gray-800/[0.5] rounded-xl p-6 shadow-sm">
-                <div class="mb-8 text-center">
+        <div class="mb-8 text-center">
                     <h2 class="text-2xl leading-relaxed text-gray-900 dark:text-white mb-4">
                         ﴿يَا أَيُّهَا الَّذِينَ آمَنُوا اذْكُرُوا اللَّهَ ذِكْراً كَثِيراً &#x06DD; وَسَبِّحُوهُ بُكْرَةً وَأَصِيلاً﴾
-                    </h2>
+            </h2>
                     <h3 class="text-lg sm:text-xl text-primary-400 mb-4">
                         زِد من حسناتك
                     </h3>
-                </div>
+        </div>
                 <div>
                     <div class="flex gap-3 mb-2">
-                        <input 
-                            type="text" 
-                            id="gratitudeInput"
-                            class="font-text-handwriting flex-1 px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out"
+            <input 
+                type="text" 
+                id="gratitudeInput"
+                class="font-text-handwriting flex-1 px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg border-2 border-gray-200 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out"
                             placeholder="ماذا فعلت اليوم لله؟"
                             aria-label="حقل إدخال الذِكر"
-                            aria-describedby="gratitude-description"
-                        />
-                        <button 
-                            id="addGratitudeBtn"
-                            class="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-xl shadow-sm hover:shadow-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-primary-500/20 cursor-pointer"
+                aria-describedby="gratitude-description"
+            />
+            <button 
+                id="addGratitudeBtn"
+                class="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-xl shadow-sm hover:shadow-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-primary-500/20 cursor-pointer"
                             aria-label="إضافة ذِكر"
-                            type="button"
-                        >
+                type="button"
+            >
                             أضف
                         </button>
                     </div>
@@ -178,9 +178,9 @@
                                 <span class="text-gray-700 dark:text-gray-300">حالة التذكيرات:</span>
                                 <button id="reminder-toggle" class="px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors duration-200">
                                     تشغيل التذكيرات
-                                </button>
-                            </div>
-                            
+            </button>
+        </div>
+
                             <div class="text-center">
                                 <p id="reminder-status" class="text-sm text-gray-500 dark:text-gray-400">التذكيرات متوقفة</p>
                             </div>
@@ -200,6 +200,25 @@
                         <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                             <p>الإصدار: 1.0.0</p>
                             <p>مناجاة - تطبيق إسلامي للذكر والعبادة</p>
+                        </div>
+                    </div>
+
+                    <!-- Demo Data Controls -->
+                    <div class="bg-gray-100 dark:bg-gray-700/[0.75] rounded-lg p-4">
+                        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-white">بيانات تجريبية</h3>
+                        <div class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
+                            <p>للتجربة والعرض التوضيحي</p>
+                            <div class="flex gap-2">
+                                <button id="populate-demo" class="px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-colors duration-200">
+                                    إضافة بيانات تجريبية
+                                </button>
+                                <button id="clear-demo" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-lg transition-colors duration-200">
+                                    مسح البيانات
+                                </button>
+                            </div>
+                            <div id="demo-info" class="text-xs text-gray-500 dark:text-gray-400">
+                                <!-- Demo info will be displayed here -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -231,6 +250,7 @@
 
     <script src="src/js/loadingManager.js"></script>
     <script src="src/js/audioManager.js"></script>
+    <script src="src/js/populateData.js"></script>
     <script src="src/js/tabs.js"></script>
     <script src="src/js/app.js"></script>
     <script src="src/js/checklist.js"></script>

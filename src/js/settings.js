@@ -9,6 +9,11 @@ class SettingsManager {
         this.applyTheme();
         this.updateThemeDisplay();
         this.addEventListeners();
+        
+        // Initialize demo controls after a short delay to ensure populate data manager is ready
+        setTimeout(() => {
+            this.initDemoControls();
+        }, 100);
     }
 
     loadSettings() {
@@ -106,6 +111,49 @@ class SettingsManager {
                     console.log('Audio not loaded yet');
                 }
             });
+        }
+    }
+
+    initDemoControls() {
+        // Demo data controls
+        const populateDemoBtn = document.getElementById('populate-demo');
+        if (populateDemoBtn) {
+            populateDemoBtn.addEventListener('click', () => {
+                if (window.populateDataManager && typeof window.populateDataManager.populateDemoData === 'function') {
+                    window.populateDataManager.populateDemoData();
+                    this.updateDemoInfo();
+                }
+            });
+        }
+
+        const clearDemoBtn = document.getElementById('clear-demo');
+        if (clearDemoBtn) {
+            clearDemoBtn.addEventListener('click', () => {
+                if (window.populateDataManager && typeof window.populateDataManager.clearDemoData === 'function') {
+                    window.populateDataManager.clearDemoData();
+                    this.updateDemoInfo();
+                }
+            });
+        }
+
+        // Update demo info on load
+        this.updateDemoInfo();
+    }
+
+    updateDemoInfo() {
+        const demoInfo = document.getElementById('demo-info');
+        if (demoInfo && window.populateDataManager && typeof window.populateDataManager.getDemoInfo === 'function') {
+            const info = window.populateDataManager.getDemoInfo();
+            if (info.totalRecords > 0) {
+                demoInfo.innerHTML = `
+                    <p>عدد الأيام: ${info.totalRecords}</p>
+                    <p>إجمالي الأنشطة: ${info.totalEntries}</p>
+                    <p>من: ${info.dateRange.oldest.toLocaleDateString('ar-SA')}</p>
+                    <p>إلى: ${info.dateRange.newest.toLocaleDateString('ar-SA')}</p>
+                `;
+            } else {
+                demoInfo.innerHTML = '<p>لا توجد بيانات حالياً</p>';
+            }
         }
     }
 }

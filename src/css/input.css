@@ -2,19 +2,13 @@
 
 @theme {
     --font-arabic: 'Noto Kufi Arabic', sans-serif;
-    --font-english: 'Montserrat', sans-serif;
     --font-handwriting: 'Playpen Sans Arabic', cursive;
 
-    --font-text-body: var(--font-english);
+    --font-text-body: var(--font-arabic);
     --font-text-handwriting: var(--font-handwriting);
 
-    /* --color-primary-50: #fef2f2; */
     --color-primary-500: #ef4444;
-    /* --color-primary-600: #dc2626; */
-    /* --color-primary-700: #b91c1c; */
 }
-
-@custom-variant dark (&:where(.dark, .dark *));
 
 .heart-pulse {
     animation: heart-pulse 2s infinite 1s cubic-bezier(0.4, 0, 0.2, 1) alternate forwards;

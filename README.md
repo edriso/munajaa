@@ -1,41 +1,32 @@
-# Grateful Heart
+# قلب ممتن - Grateful Heart
 
-In a world full of comparisons, we often forget one of the greatest virtues in Islam: الرضا (contentment).
+في عالم مليء بالمقارنات، غالباً ما ننسى إحدى أعظم الفضائل في الإسلام: الرضا.
 
-I hope this app helps us focus on being more grateful for what we have and stay focused on our own path in life.
+آمل أن يساعد هذا التطبيق في التركيز على كوننا أكثر امتناناً لما لدينا والبقاء مركزين على مسارنا في الحياة.
 
 <div align="center">
-  <img src="src/assets/heart-logo.svg" alt="Grateful Heart Logo" width="64" height="64">
+  <img src="src/assets/heart-logo.svg" alt="قلب ممتن" width="64" height="64">
 </div>
 
-## Tech
+## التقنية
 
-- HTML, CSS (Tailwind), and JavaScript
-- Data stored locally on your browser
+- HTML, CSS (Tailwind), و JavaScript
+- البيانات محفوظة محلياً في متصفحك
 
-## Features
+## المميزات
 
-- Write things you're grateful for each day
-- See today's blessings highlighted
-- Your entries are saved automatically in your browser
-- Each gratitude entry is cleared after 7 days, keeping your list fresh
-- Automatic timezone detection and local date display
-- Random display order with playful rotation effects
-- Age-based opacity (recent entries more visible)
-- Double-click to delete entries
-- Animated pulsing heart logo
-- Dark theme support
-- English and Arabic language support
-- Simple and clean interface
-
-<!-- ## How to start
-
-1. Open [the app](https://edriso.github.io/grateful-heart) in your browser
-2. Type what you're thankful for and click to add
-3. Your gratitude list is saved automatically
-
-**That's it!** Come back tomorrow to add new blessings. -->
+- اكتب الأشياء التي تحمد الله عليها كل يوم
+- شاهد نعم اليوم مميزة
+- يتم حفظ إدخالاتك تلقائياً في متصفحك
+- كل إدخال امتنان يتم مسحه بعد 7 أيام، مما يحافظ على قائمتك جديدة
+- كشف تلقائي للوقت المحلي وعرض التاريخ المحلي
+- ترتيب عرض عشوائي مع تأثيرات دوران مرحة
+- شفافية تعتمد على العمر (الإدخالات الحديثة أكثر وضوحاً)
+- انقر مزدوج لحذف الإدخالات
+- شعار قلب نابض متحرك
+- واجهة بسيطة ونظيفة باللغة العربية
+- تصميم داكن
 
 ---
 
-**Write down your blessings today and let your heart be filled with gratitude!** 🌸
+**اكتب نعمك اليوم ودع قلبك يمتلئ بالامتنان!** 🌸

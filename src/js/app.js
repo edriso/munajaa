@@ -42,7 +42,7 @@ class App {
             // Calculate opacity based on days difference
             let opacityClass;
             switch (daysDiff) {
-                case 0: opacityClass = 'opacity-100 text-primary-500 dark:text-white'; break;
+                case 0: opacityClass = 'opacity-100 text-primary-500 text-white'; break;
                 case 1: opacityClass = 'opacity-90'; break;
                 case 2: opacityClass = 'opacity-80'; break;
                 case 3: opacityClass = 'opacity-70'; break;
@@ -60,11 +60,8 @@ class App {
         });
 
         if(allEntries.length === 0) {
-            const emptyListTextEn = "No gratitude added yet. Start by adding something you're grateful for!"    
-            const emptyListTextAr = "لا يوجد نعم مضافة بعد. أبدأ بإضافة شيء تحمد الله عليه.";
-            const language = document.documentElement.lang;
-            const emptyListText = language === 'ar' ? emptyListTextAr : emptyListTextEn;
-            this.gratitudeList.innerHTML = `<li class="font-text-body text-lg" data-en="${emptyListTextEn}" data-ar="${emptyListTextAr}">${emptyListText}</li>`;
+            const emptyListText = "لا يوجد نعم مضافة بعد. أبدأ بإضافة شيء تحمد الله عليه.";
+            this.gratitudeList.innerHTML = `<li class="font-text-body text-lg">${emptyListText}</li>`;
             return;
         }
 

@@ -15,6 +15,10 @@ class App {
             this.records = JSON.parse(records);
         }
 
+        this.checklistManager = null; // Will be initialized later
+        this.longPressTimer = null;
+        this.pressThreshold = 500; // 500ms for long press
+
         this.init();
     }
     
@@ -125,7 +129,7 @@ class App {
             // Display shuffled entries with random rotation
             shuffledEntries.forEach((entry) => {
                 const entryLi = document.createElement('li');
-                entryLi.className = `${entry.opacityClass} inline-block p-4`;
+                entryLi.className = `${entry.opacityClass} inline-block p-4 bg-white/[0.5] dark:bg-gray-800/[0.5] rounded-lg shadow-sm border border-gray-200 dark:border-gray-700`;
                 entryLi.textContent = entry.text;
                 entryLi.dataset.date = this.getDateStringFromUTC(entry.date);
 
@@ -217,8 +221,10 @@ class App {
         element.style.transform = `rotate(${randomDegree}deg)`;
     }
     
-    addRecord() {
-        const text = this.gratitudeInput.value.trim();
+    addRecord(text) {
+        if (!text) {
+            text = this.gratitudeInput.value.trim();
+        }
         if (!text) return;
 
         const today = this.getDateStringFromUTC(this.getCurrentDateUTC());
@@ -228,17 +234,15 @@ class App {
         if (!record) {
             this.records.push({ date: this.getCurrentDateUTC(), entries: [text] });
         } else {
-            this.records.find(record => {
-                if (this.getDateStringFromUTC(record.date) === today) {
-                    record.entries.push(text);
-                }
-            });
+            record.entries.push(text);
         }
 
         localStorage.setItem('records', JSON.stringify(this.records));
 
-        // Clear input
-        this.gratitudeInput.value = '';
+        // Clear input only if it was used
+        if (this.gratitudeInput.value.trim()) {
+            this.gratitudeInput.value = '';
+        }
         
         // Refresh display
         this.displayRecords();
@@ -249,25 +253,28 @@ class App {
         
         this.gratitudeInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
+                e.preventDefault();
                 this.addRecord();
             }
         });
 
-        this.gratitudeList.addEventListener('dblclick', (e) => {
-            const target = e.target;
+        // Event delegation for desktop and mobile deletion
+        this.gratitudeList.addEventListener('dblclick', (e) => this.handleDelete(e.target));
+        this.gratitudeList.addEventListener('touchstart', (e) => this.handleTouchStart(e));
+        this.gratitudeList.addEventListener('touchend', (e) => this.handleTouchEnd(e));
+        this.gratitudeList.addEventListener('touchmove', (e) => this.handleTouchMove(e));
+    }
 
-            if(target.tagName !== 'LI') return;
+    handleDelete(target) {
+        if (target.tagName !== 'LI') return;
 
-            const record = this.records.find(record => this.getDateStringFromUTC(record.date) === target.dataset.date);
-            
-            if (!record) return;
-            
-            // Find the index of the specific entry to remove
-            const entryIndex = record.entries.indexOf(target.textContent);
-            if (entryIndex > -1) {
-                // Remove only the specific entry at this index
-                record.entries.splice(entryIndex, 1);
-            }
+        const record = this.records.find(record => this.getDateStringFromUTC(record.date) === target.dataset.date);
+        if (!record) return;
+
+        const entryIndex = record.entries.indexOf(target.textContent);
+        if (entryIndex > -1) {
+            const deletedItemText = record.entries[entryIndex];
+            record.entries.splice(entryIndex, 1);
 
             if (record.entries.length === 0) {
                 this.records = this.records.filter(item => item.date !== record.date);
@@ -275,11 +282,31 @@ class App {
 
             localStorage.setItem('records', JSON.stringify(this.records));
             this.displayRecords();
-        });
+            if (this.checklistManager) {
+                this.checklistManager.uncheckItem(deletedItemText);
+            }
+        }
+    }
+
+    handleTouchStart(e) {
+        this.longPressTimer = setTimeout(() => {
+            this.handleDelete(e.target);
+            this.longPressTimer = null;
+        }, this.pressThreshold);
+    }
+
+    handleTouchEnd(e) {
+        clearTimeout(this.longPressTimer);
+    }
+
+    handleTouchMove(e) {
+        clearTimeout(this.longPressTimer);
     }
 }
 
 // Initialize the app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    new App();
+    const appInstance = new App();
+    const checklistManager = new ChecklistManager(appInstance);
+    appInstance.checklistManager = checklistManager;
 });

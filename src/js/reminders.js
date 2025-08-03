@@ -131,7 +131,7 @@ class RemindersManager {
             statusText.textContent = this.isEnabled 
                 ? `التذكيرات مفعلة كل ${this.intervalMinutes} دقيقة` 
                 : 'التذكيرات متوقفة';
-            statusText.className = `text-sm ${this.isEnabled ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-400'}`;
+            statusText.className = `text-sm ${this.isEnabled ? 'text-primary-600 dark:text-primary-400' : 'text-gray-500 dark:text-gray-400'}`;
         }
     }
 }

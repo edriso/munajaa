@@ -104,15 +104,14 @@ class ChecklistManager {
         if (newItem && !this.allItems.includes(newItem)) {
             this.allItems.push(newItem);
             this.saveAllItems();
-            this.newItemInput.value = '';
             this.render();
-        } else if (newItem && this.allItems.includes(newItem)) {
-            // If item already exists, just check it
-            if (!this.isChecked(newItem)) {
-                this.handleCheck(newItem);
-            }
-            this.newItemInput.value = '';
+            // } else if (newItem && this.allItems.includes(newItem)) {
+                //     // If item already exists, just check it
+                //     if (!this.isChecked(newItem)) {
+                    //         this.handleCheck(newItem);
+                    //     }
         }
+        this.newItemInput.value = '';
     }
 
     deleteItem(item) {
@@ -122,7 +121,7 @@ class ChecklistManager {
     }
 
     loadAllItems() {
-        const savedItems = JSON.parse(localStorage.getItem('customChecklistItems')) || [];
+        const savedItems = JSON.parse(localStorage.getItem('checklistItems')) || [];
         // If no saved items, initialize with default items
         if (savedItems.length === 0) {
             return [...this.defaultItems];
@@ -131,7 +130,7 @@ class ChecklistManager {
     }
 
     saveAllItems() {
-        localStorage.setItem('customChecklistItems', JSON.stringify(this.allItems));
+        localStorage.setItem('checklistItems', JSON.stringify(this.allItems));
     }
 
     refresh() {

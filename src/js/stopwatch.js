@@ -178,12 +178,12 @@ class StopwatchManager {
         if (timeDisplay) {
             const originalText = timeDisplay.textContent;
             timeDisplay.textContent = 'انتهى الوقت!';
-            timeDisplay.classList.add('text-green-500', 'animate-pulse');
+            timeDisplay.classList.add('text-primary-500', 'animate-pulse');
             
             // Reset after 3 seconds
             setTimeout(() => {
                 timeDisplay.textContent = originalText;
-                timeDisplay.classList.remove('text-green-500', 'animate-pulse');
+                timeDisplay.classList.remove('text-primary-500', 'animate-pulse');
             }, 3000);
         }
     }

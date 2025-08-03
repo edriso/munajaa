@@ -325,17 +325,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const checklistManager = new ChecklistManager(appInstance);
     appInstance.checklistManager = checklistManager;
 
-    // Lines below are for demo data
     // Make app instance globally available
     window.app = appInstance;
     
+    // Lines below are for demo data
     // Initialize populate data manager if available
     if (window.PopulateDataManager) {
         window.populateDataManager = new PopulateDataManager(appInstance);
-        
-        // Auto-populate demo data if no existing data
-        if (!window.populateDataManager.hasDemoData()) {
-            window.populateDataManager.populateDemoData();
-        }
     }
 });

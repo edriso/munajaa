@@ -24,7 +24,8 @@ html.loaded {
 }
 
 body {
-    background-image: url("../assets/vecteezy_golden-islamic-pattern.png");
+    background-image: url("../assets/islamic-pattern.svg");
+    background-size: 40%;
 }
 
 button {

@@ -28,6 +28,9 @@ class TabManager {
         clickedTab.classList.remove('text-gray-600', 'dark:text-gray-400');
         const tabId = clickedTab.getAttribute('data-tab');
         document.getElementById(tabId).classList.remove('hidden');
+        
+        // Scroll to top of the page
+        window.scrollTo(0, 0);
     }
 }
 

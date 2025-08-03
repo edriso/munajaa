@@ -12,6 +12,14 @@
     --color-primary-600: #16a34a;
 }
 
+body {
+    background-image: url("../assets/islamic-pattern.svg");
+    background-repeat: repeat;
+    background-position: center;
+    background-blend-mode: overlay;
+    background-size: 50%;
+}
+
 .heart-pulse {
     animation: heart-pulse 2s infinite 1s cubic-bezier(0.4, 0, 0.2, 1) alternate forwards;
 }

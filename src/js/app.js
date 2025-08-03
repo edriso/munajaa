@@ -60,8 +60,8 @@ class App {
         });
 
         if(allEntries.length === 0) {
-            const emptyListText = "لا يوجد نعم مضافة بعد. أبدأ بإضافة شيء تحمد الله عليه.";
-            this.gratitudeList.innerHTML = `<li class="font-text-body text-lg">${emptyListText}</li>`;
+            const emptyListText = "لا يوجد عبادات مُضافة بعد. أبدأ بإضافة ذِكر أو عبادة.";
+            this.gratitudeList.innerHTML = `<li class="font-text-body text-base sm:text-lg">${emptyListText}</li>`;
             return;
         }
 

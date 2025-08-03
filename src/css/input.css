@@ -7,7 +7,9 @@
     --font-text-body: var(--font-arabic);
     --font-text-handwriting: var(--font-handwriting);
 
-    --color-primary-500: #ef4444;
+    --color-primary-400: #4ade80;
+    --color-primary-500: #22c55e;
+    --color-primary-600: #16a34a;
 }
 
 .heart-pulse {

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="تطبيق بسيط لمساعدتك في ممارسة الامتنان من خلال كتابة ما تشكر الله عليه كل يوم.">
-    <meta name="keywords" content="امتنان, نعم يومية, مذكرات الامتنان, ممارسة الامتنان, قائمة الامتنان, تطبيق الامتنان">
-    <title>قلب ممتن</title>
+    <meta name="description" content="تطبيق بسيط لمساعدتك في ممارسة المناجاة والذكر والدعاء وزيادة الحسنات.">
+    <meta name="keywords" content="مناجاة, ذكر, دعاء, استغفار, حسنات, صلاة, عبادة">
+    <title>مناجاة</title>
     <link rel="icon" type="image/svg+xml" href="src/assets/heart-logo.svg"/>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,12 +20,13 @@
             <!-- Logo/Title -->
             <div class="flex items-center gap-1 space-x-2 rtl:space-x-reverse">
                 <span class="w-6 h-6 text-primary-500 m-0 heart-pulse">
+                    <!-- 🌿 -->
                     <svg class="w-full h-full" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                     </svg>
                 </span>
                 <h1 class="text-xl font-bold text-white">
-                    قلب ممتن
+                    مناجاة
                 </h1>
             </div>
         </div>
@@ -34,13 +35,16 @@
     <main class="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="mb-8 text-center">
             <h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
-                ما هي الأشياء التي تحمد الله عليها اليوم؟
+                "يَا أَيُّهَا الَّذِينَ آمَنُوا اذْكُرُوا اللَّهَ ذِكْراً كَثِيراً، وَسَبِّحُوهُ بُكْرَةً وَأَصِيلاً"
             </h2>
+            <p class="text-lg sm:text-xl text-primary-400 mb-4">
+                زِد من حسناتك
+            </p>
             <p class="text-xs sm:text-sm lg:text-base text-gray-400">
-                اكتب 3-5 أشياء (سيتم حفظها لمدة 7 أيام)
+                اكتب ما قمت به من أذكار أو عبادات اليوم (سيتم حفظها لمدة 7 أيام)
             </p>
             <p class="text-xs text-gray-400">
-                عند النقر المزدوج على العنصر، سيتم حذفه نهائيًا
+                عند النقر المزدوج على العنصر، سيتم حذفه
             </p>
         </div>
 
@@ -49,32 +53,30 @@
                 type="text" 
                 id="gratitudeInput"
                 class="font-text-handwriting flex-1 px-4 sm:px-6 py-3 sm:py-4 text-base sm:text-lg border-2 border-gray-600 rounded-xl bg-gray-800 text-white placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-primary-500/20 focus:border-primary-500 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out"
-                placeholder="الحمدلله على ..."
-                aria-label="حقل إدخال الامتنان"
+                placeholder="اليوم قمت ب..."
+                aria-label="حقل إدخال الذِكر"
                 aria-describedby="gratitude-description"
             />
             <button 
                 id="addGratitudeBtn"
                 class="px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-xl shadow-sm hover:shadow-md transition-all duration-300 ease-in-out focus:outline-none focus:ring-4 focus:ring-primary-500/20 cursor-pointer"
-                aria-label="إضافة امتنان"
+                aria-label="إضافة ذِكر"
                 type="button"
             >
                 أضف
             </button>
         </div>
 
-        <ul id="gratitudeList" class="font-text-handwriting text-gray-300 flex gap-4 flex-wrap justify-center bg-gray-800 rounded-lg shadow-sm border border-gray-700 p-4 sm:p-6" role="list" aria-label="قائمة الامتنان">
+        <ul id="gratitudeList" class="font-text-handwriting text-gray-300 flex gap-4 flex-wrap justify-center bg-gray-800 rounded-lg shadow-sm border border-gray-700 p-4 sm:p-6" role="list" aria-label="قائمة الأدعية">
             <!-- Content will be dynamically added here -->
-            <li class="font-text-body text-base sm:text-lg">
-                لا يوجد نعم مضافة بعد. أبدأ بإضافة شيء تحمد الله عليه.
-            </li>
         </ul>
     </main>
 
     <footer class="bg-gray-800 border-t border-gray-700 mt-auto">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
             <p class="text-sm text-gray-500 leading-relaxed before:content-['"'] after:content-['"']">
-                رَبِّ أَوْزِعْنِي أَنْ أَشْكُرَ نِعْمَتَكَ الَّتِي أَنْعَمْتَ عَلَيَّ وَعَلَى وَالِدَيَّ وَأَنْ أَعْمَلَ صَالِحًا تَرْضَاهُ وَأَدْخِلْنِي بِرَحْمَتِكَ فِي عِبَادِكَ الصَّالِحِينَ
+                قَالَ النَّبِيُّ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ:
+                «مَثَلُ الَّذِي يَذْكُرُ رَبَّهُ وَالَّذِي لاَ يَذْكُرُ رَبَّهُ، مَثَلُ الحَيِّ وَالمَيِّتِ»
             </p>
         </div>
     </footer>

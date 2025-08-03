@@ -469,6 +469,9 @@
       background-color: color-mix(in oklab, var(--color-white) 50%, transparent);
     }
   }
+  .bg-cover {
+    background-size: cover;
+  }
   .bg-center {
     background-position: center;
   }

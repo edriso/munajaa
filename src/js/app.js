@@ -83,7 +83,10 @@ class App {
         });
 
         // Display entries grouped by date
-        Object.keys(groupedByDate).forEach(dateKey => {
+        const dateKeys = Object.keys(groupedByDate);
+        const shuffledDateKeys = this.shuffleArray(dateKeys);
+        
+        shuffledDateKeys.forEach(dateKey => {
             const entries = groupedByDate[dateKey];
             
             // Create day heading
@@ -95,7 +98,7 @@ class App {
             const today = new Date();
             const yesterday = new Date(today);
             yesterday.setDate(yesterday.getDate() - 1);
-
+            
             const dateString = date.toDateString();
             
             let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };

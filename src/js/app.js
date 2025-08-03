@@ -274,17 +274,29 @@ class App {
         const entryIndex = record.entries.indexOf(target.textContent);
         if (entryIndex > -1) {
             const deletedItemText = record.entries[entryIndex];
-            record.entries.splice(entryIndex, 1);
+            this.deleteRecord(deletedItemText, record);
+        }
+    }
 
+    deleteRecord(itemText, recordToDelete = null) {
+        let record = recordToDelete;
+        if (!record) {
+            const today = this.getDateStringFromUTC(this.getCurrentDateUTC());
+            record = this.records.find(r => this.getDateStringFromUTC(r.date) === today);
+        }
+
+        if (!record) return;
+
+        const entryIndex = record.entries.indexOf(itemText);
+        if (entryIndex > -1) {
+            record.entries.splice(entryIndex, 1);
             if (record.entries.length === 0) {
                 this.records = this.records.filter(item => item.date !== record.date);
             }
 
             localStorage.setItem('records', JSON.stringify(this.records));
             this.displayRecords();
-            if (this.checklistManager) {
-                this.checklistManager.uncheckItem(deletedItemText);
-            }
+            // No longer need to uncheck the item from the checklist
         }
     }
 

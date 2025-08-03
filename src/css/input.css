@@ -2,7 +2,7 @@
 
 @theme {
     --font-arabic: 'Noto Kufi Arabic', sans-serif;
-    --font-handwriting: 'Playpen Sans Arabic', cursive;
+    --font-handwriting: 'Noto Kufi Arabic', sans-serif;
 
     --font-text-body: var(--font-arabic);
     --font-text-handwriting: var(--font-handwriting);
@@ -12,12 +12,10 @@
     --color-primary-600: #16a34a;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 body {
-    background-image: url("../assets/islamic-pattern.svg");
-    background-repeat: repeat;
-    background-position: center;
-    background-blend-mode: overlay;
-    background-size: 50%;
+    background-image: url("../assets/vecteezy_golden-islamic-pattern.png");
 }
 
 .heart-pulse {

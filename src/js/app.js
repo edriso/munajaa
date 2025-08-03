@@ -42,7 +42,7 @@ class App {
             // Calculate opacity based on days difference
             let opacityClass;
             switch (daysDiff) {
-                case 0: opacityClass = 'opacity-100 text-primary-500 text-white'; break;
+                case 0: opacityClass = 'opacity-100 text-primary-500 dark:text-white'; break;
                 case 1: opacityClass = 'opacity-90'; break;
                 case 2: opacityClass = 'opacity-80'; break;
                 case 3: opacityClass = 'opacity-70'; break;
@@ -91,7 +91,7 @@ class App {
             
             // Create day heading
             const dayHeading = document.createElement('h3');
-            dayHeading.className = 'w-full text-lg font-bold text-primary-400';
+            dayHeading.className = `w-full text-lg ${entries[0].opacityClass} mt-4 first:mt-0`;
             
             // Format date in Arabic
             const date = new Date(dateKey);
@@ -117,7 +117,7 @@ class App {
             
             // Create container for this day's entries
             const dayContainer = document.createElement('div');
-            dayContainer.className = 'w-full flex gap-4 flex-wrap justify-center mb-4';
+            dayContainer.className = 'w-full flex gap-4 flex-wrap justify-center';
             
             // Shuffle the entries for this day
             const shuffledEntries = this.shuffleArray(entries);

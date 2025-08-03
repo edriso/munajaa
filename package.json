@@ -1,0 +1,18 @@
+{
+  "name": "grateful-heart",
+  "version": "1.0.0",
+  "description": "A simple web app to help you practice gratitude by writing down what you're thankful for each day.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx @tailwindcss/cli -i ./src/css/input.css -o ./src/css/output.css --watch",
+    "dev": "npm run start",
+    "build": "npx @tailwindcss/cli -i ./src/css/input.css -o ./src/css/output.css"
+  },
+  "keywords": [],
+  "author": "Mohamed Idris",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}

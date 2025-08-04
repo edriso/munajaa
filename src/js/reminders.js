@@ -3,7 +3,7 @@ class RemindersManager {
     constructor() {
         this.interval = null;
         this.isEnabled = false;
-        this.intervalMinutes = 10;
+        this.intervalMinutes = 5;
         this.loadSettings();
         this.init();
     }
@@ -19,7 +19,7 @@ class RemindersManager {
     loadSettings() {
         const settings = JSON.parse(localStorage.getItem('settings')) || {};
         this.isEnabled = settings.remindersEnabled !== undefined ? settings.remindersEnabled : true;
-        this.intervalMinutes = settings.reminderInterval || 10;
+        this.intervalMinutes = settings.reminderInterval || 5;
     }
 
     saveSettings() {

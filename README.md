@@ -30,7 +30,7 @@ Munajaa / Munajat (مناجاة) means "whispering to God" - intimate conversati
 - Auto-resets after completion
 
 ### 🔔 Reminders
-- Audio reminders every 10 minutes (customizable)
+- Audio reminders every 5 minutes (customizable)
 - Gentle Islamic audio notifications
 - Enable/disable as needed
 

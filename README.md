@@ -26,12 +26,12 @@ Munajaa / Munajat (مناجاة) means "whispering to God" - intimate conversati
 ### ⏱️ Focus Timer
 - 5-minute default timer (customizable 1-120 minutes)
 - Perfect for focused dhikr or prayer sessions
-- Plays beautiful Islamic audio when timer ends
+- Plays dhikr audio when timer ends
 - Auto-resets after completion
 
 ### 🔔 Reminders
 - Audio reminders every 5 minutes (customizable)
-- Gentle Islamic audio notifications
+- Gentle dhikr audio notifications
 - Enable/disable as needed
 
 ### ⚙️ Settings

@@ -40,12 +40,6 @@ Munajaa / Munajat (مناجاة) means "whispering to God" - intimate conversati
 - Reminder controls
 - All settings saved automatically
 
-## Getting Started
-
-1. **Clone or download** the project
-2. **Open** `index.html` in your browser
-3. **Start tracking** your daily spiritual activities!
-
 ## Technical Details
 
 - **Built with**: HTML, CSS (Tailwind), JavaScript

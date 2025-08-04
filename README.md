@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="src/assets/heart-logo.svg" alt="Munajat" width="64" height="64">
+  <img src="src/assets/heart-logo.svg" alt="Munajaa" width="64" height="64">
 </div>
 
 # Munajaa

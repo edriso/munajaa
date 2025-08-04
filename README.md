@@ -1,4 +1,4 @@
-# Munajat - مناجاة
+# Munajaa
 
 A spiritual daily tracker for Muslims to record prayers, dhikr, and good deeds.
 
@@ -6,9 +6,9 @@ A spiritual daily tracker for Muslims to record prayers, dhikr, and good deeds.
   <img src="src/assets/heart-logo.svg" alt="Munajat" width="64" height="64">
 </div>
 
-## What is Munajat?
+## What is Munajaa?
 
-Munajat (مناجاة) means "whispering to God" - intimate conversations with Allah. This app helps you track your daily spiritual activities and stay connected to your faith.
+Munajat/Munajat (مناجاة) means "whispering to God" - intimate conversations with Allah. This app helps you track your daily spiritual activities and stay connected to your faith.
 
 ## Features
 
@@ -55,4 +55,4 @@ Munajat (مناجاة) means "whispering to God" - intimate conversations with A
 
 ---
 
-**Take blessed moments for prayer, remembrance, and seeking forgiveness, and increase your good deeds!** 🌿
+**Take blessed moments for prayer, dhikr, and seeking forgiveness, and increase your good deeds!** 🌿
